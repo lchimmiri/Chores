@@ -2,6 +2,7 @@
 
 1) <a href="#Weblogic-topic-consumption">Weblogic topic consumption by only one instance in the cluster using Message Driven Beans</a>
 
+<pre>
 
 
 
@@ -42,12 +43,11 @@
 
 
 
-
-
+</pre>
 <h2><a id="content-Weblogic-topic-consumption" class="anchor" aria-hidden="true" href="#Weblogic-topic-consumption"></a>Weblogic topic consumption by only one instance in the cluster using Message Driven Beans</h2>
 
 <b><u>ejb-jar.xml:</u></b>
-
+<pre>
 <?xml version="1.0" encoding="UTF-8"?>
 <ejb-jar xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd"
@@ -70,9 +70,9 @@
 	</message-driven>   	
 	</enterprise-beans>	
 </ejb-jar>
-
+</pre>
 <b><u>weblogic-ejb-jar.xml:</u></b>
-
+<pre>
 <?xml version="1.0"?>	
 <weblogic-ejb-jar xmlns="http://www.bea.com/ns/weblogic/10.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -86,9 +86,9 @@
 		</message-driven-descriptor>
 	</weblogic-enterprise-bean>
 </weblogic-ejb-jar>
-
+</pre>
 <b><u>MyMDB.java:</u></b>
-
+<pre>
 import javax.ejb.EJBException;
 import javax.ejb.MessageDrivenBean;
 import javax.ejb.MessageDrivenContext;
@@ -103,6 +103,6 @@ public void onMessage(Message message) {}
 
 // unimplemented methods
 }
-
+</pre>
 
 
