@@ -47,7 +47,7 @@
 </weblogic-ejb-jar>
 ```
 <b><u>MyMDB.java</u></b>
-<code>
+<pre>
 import javax.ejb.EJBException;
 import javax.ejb.MessageDrivenBean;
 import javax.ejb.MessageDrivenContext;
@@ -62,4 +62,4 @@ public void onMessage(Message message) {}
 
 // unimplemented methods
 }
-</code>
+</pre>
