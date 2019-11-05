@@ -6,7 +6,7 @@
 ## Weblogic-topic-consumption
 
 <b><u>ejb-jar.xml:</u></b>
-<pre>
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ejb-jar xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd"
@@ -29,9 +29,9 @@
 	</message-driven>   	
 	</enterprise-beans>	
 </ejb-jar>
-</pre>
+```
 <b><u>weblogic-ejb-jar.xml:</u></b>
-<pre>
+```xml
 <?xml version="1.0"?>	
 <weblogic-ejb-jar xmlns="http://www.bea.com/ns/weblogic/10.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -45,7 +45,7 @@
 		</message-driven-descriptor>
 	</weblogic-enterprise-bean>
 </weblogic-ejb-jar>
-</pre>
+```
 <b><u>MyMDB.java:</u></b>
 <pre>
 import javax.ejb.EJBException;
@@ -63,12 +63,3 @@ public void onMessage(Message message) {}
 // unimplemented methods
 }
 </pre>
-
-
-### Prerequisites
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-
