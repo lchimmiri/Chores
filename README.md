@@ -2,7 +2,107 @@
 
 1) <a href="#Weblogic-topic-consumption">Weblogic topic consumption by only one instance in the cluster using Message Driven Beans</a>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h2><a id="content-Weblogic-topic-consumption" class="anchor" aria-hidden="true" href="#Weblogic-topic-consumption"></a>Weblogic topic consumption by only one instance in the cluster using Message Driven Beans</h2>
 
+<b><u>ejb-jar.xml:</u></b>
 
-<h2><a id="user-content-what-is-it" class="anchor" aria-hidden="true" href="#what-is-it"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is it?</h2>
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd"
+	version="2.1">
+	<enterprise-beans>	
+    <message-driven>
+		<ejb-name>MDBBean</ejb-name>
+		<ejb-class>org.learning.MyMDB</ejb-class>            
+		<transaction-type>Container</transaction-type>
+			<activation-config>
+				<activation-config-property>
+					<activation-config-property-name>destinationType</activation-config-property-name>
+					<activation-config-property-value>javax.jms.Topic</activation-config-property-value>
+				</activation-config-property>
+				<activation-config-property>
+					<activation-config-property-name>topicMessagesDistributionMode</activation-config-property-name>
+					<activation-config-property-value>One-Copy-Per-Application</activation-config-property-value>
+				</activation-config-property>
+			</activation-config>
+	</message-driven>   	
+	</enterprise-beans>	
+</ejb-jar>
+
+<b><u>weblogic-ejb-jar.xml:</u></b>
+
+<?xml version="1.0"?>	
+<weblogic-ejb-jar xmlns="http://www.bea.com/ns/weblogic/10.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.bea.com/ns/weblogic/10.0 http://www.bea.com/ns/weblogic/10.0/weblogic-ejb-jar.xsd http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd">
+	
+	<weblogic-enterprise-bean>
+		<ejb-name>MDBBean</ejb-name>
+		<message-driven-descriptor>
+			<destination-jndi-name>jms/myTopic</destination-jndi-name>
+			<provider-url>t3://<host>:<port></provider-url> <!-- t3 ot t3s -->
+		</message-driven-descriptor>
+	</weblogic-enterprise-bean>
+</weblogic-ejb-jar>
+
+<b><u>MyMDB.java:</u></b>
+
+import javax.ejb.EJBException;
+import javax.ejb.MessageDrivenBean;
+import javax.ejb.MessageDrivenContext;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+
+import org.apache.logging.log4j.Logger;
+
+public class MyMDB implements MessageDrivenBean, MessageListener {
+// This will be called for every message in the topic but only once across the cluster
+public void onMessage(Message message) {}
+
+// unimplemented methods
+}
+
+
+
