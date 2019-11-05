@@ -5,7 +5,7 @@
 
 ## Weblogic-topic-consumption
 
-<b><u>ejb-jar.xml:</u></b>
+<b><u>ejb-jar.xml</u></b>
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ejb-jar xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -30,7 +30,7 @@
 	</enterprise-beans>	
 </ejb-jar>
 ```
-<b><u>weblogic-ejb-jar.xml:</u></b>
+<b><u>weblogic-ejb-jar.xml</u></b>
 ```xml
 <?xml version="1.0"?>	
 <weblogic-ejb-jar xmlns="http://www.bea.com/ns/weblogic/10.0"
@@ -46,8 +46,8 @@
 	</weblogic-enterprise-bean>
 </weblogic-ejb-jar>
 ```
-<b><u>MyMDB.java:</u></b>
-<pre>
+<b><u>MyMDB.java</u></b>
+<code>
 import javax.ejb.EJBException;
 import javax.ejb.MessageDrivenBean;
 import javax.ejb.MessageDrivenContext;
@@ -62,4 +62,4 @@ public void onMessage(Message message) {}
 
 // unimplemented methods
 }
-</pre>
+</code>
