@@ -1,108 +1,89 @@
 # Chores
 
-1) <a href="#Weblogic-topic-consumption">Weblogic topic consumption by only one instance in the cluster using Message Driven Beans</a>
+# Project Title
 
-<pre>
+One Paragraph of project description goes here
 
+## Getting Started
 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+### Prerequisites
 
+What things you need to install the software and how to install them
 
+```
+Give examples
+```
 
+### Installing
 
+A step by step series of examples that tell you how to get a development env running
 
+Say what the step will be
 
+```
+Give the example
+```
 
+And repeat
 
+```
+until finished
+```
 
+End with an example of getting some data out of the system or using it for a little demo
 
+## Running the tests
 
+Explain how to run the automated tests for this system
 
+### Break down into end to end tests
 
+Explain what these tests test and why
 
+```
+Give an example
+```
 
+### And coding style tests
 
+Explain what these tests test and why
 
+```
+Give an example
+```
 
+## Deployment
 
+Add additional notes about how to deploy this on a live system
 
+## Built With
 
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
+## Contributing
 
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
+## Versioning
 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
+## Authors
 
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
+## License
 
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
+## Acknowledgments
 
-
-
-
-
-
-</pre>
-<h2><a id="content-Weblogic-topic-consumption" class="anchor" aria-hidden="true" href="#Weblogic-topic-consumption"></a>Weblogic topic consumption by only one instance in the cluster using Message Driven Beans</h2>
-
-<b><u>ejb-jar.xml:</u></b>
-<pre>
-<?xml version="1.0" encoding="UTF-8"?>
-<ejb-jar xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd"
-	version="2.1">
-	<enterprise-beans>	
-    <message-driven>
-		<ejb-name>MDBBean</ejb-name>
-		<ejb-class>org.learning.MyMDB</ejb-class>            
-		<transaction-type>Container</transaction-type>
-			<activation-config>
-				<activation-config-property>
-					<activation-config-property-name>destinationType</activation-config-property-name>
-					<activation-config-property-value>javax.jms.Topic</activation-config-property-value>
-				</activation-config-property>
-				<activation-config-property>
-					<activation-config-property-name>topicMessagesDistributionMode</activation-config-property-name>
-					<activation-config-property-value>One-Copy-Per-Application</activation-config-property-value>
-				</activation-config-property>
-			</activation-config>
-	</message-driven>   	
-	</enterprise-beans>	
-</ejb-jar>
-</pre>
-<b><u>weblogic-ejb-jar.xml:</u></b>
-<pre>
-<?xml version="1.0"?>	
-<weblogic-ejb-jar xmlns="http://www.bea.com/ns/weblogic/10.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.bea.com/ns/weblogic/10.0 http://www.bea.com/ns/weblogic/10.0/weblogic-ejb-jar.xsd http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd">
-	
-	<weblogic-enterprise-bean>
-		<ejb-name>MDBBean</ejb-name>
-		<message-driven-descriptor>
-			<destination-jndi-name>jms/myTopic</destination-jndi-name>
-			<provider-url>t3://<host>:<port></provider-url> <!-- t3 ot t3s -->
-		</message-driven-descriptor>
-	</weblogic-enterprise-bean>
-</weblogic-ejb-jar>
-</pre>
-<b><u>MyMDB.java:</u></b>
-<pre>
-import javax.ejb.EJBException;
-import javax.ejb.MessageDrivenBean;
-import javax.ejb.MessageDrivenContext;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-
-import org.apache.logging.log4j.Logger;
-
-public class MyMDB implements MessageDrivenBean, MessageListener {
-// This will be called for every message in the topic but only once across the cluster
-public void onMessage(Message message) {}
-
-// unimplemented methods
-}
-</pre>
-
-
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
